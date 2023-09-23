@@ -8,8 +8,6 @@ function Grid() {
   useEffect(() => {
     const handleSpacebarPress = (event) => {
       if (event.keyCode === 32) {
-        console.log("Spacebar pressed");
-        
         const newCard = {
           id: Math.random(),
           title: window.prompt("Spell title (e.g. Fireball)"),
@@ -18,6 +16,9 @@ function Grid() {
           range: window.prompt("Spell range (e.g. 150 feet)"),
           components: window.prompt("Spell components (e.g. V, S, M)"),
           materials: window.prompt("If there is M component, type it which one is it. If none, leave empty"),
+          duration: window.prompt("Spell duration (e.g. Instantaneous or 1 hour"),
+          description: window.prompt("Description"),
+          higherLevels: window.prompt("Type how this spell will work on higher levels"),
         };
 
         setCards([...cards, newCard]);
@@ -42,6 +43,9 @@ function Grid() {
             range={card.range}
             components={card.components}
             materials={card.materials}
+            duration={card.duration}
+            description={card.description}
+            higherLevels={card.higherLevels}
           />
         ))}
       </div>
