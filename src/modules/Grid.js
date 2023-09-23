@@ -6,26 +6,42 @@ function Grid() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    const handleSpacebarPress = (event) => {
-      if (event.keyCode === 32) {
-        const newCard = {
-          id: Math.random(),
-          title: window.prompt("Spell title (e.g. Fireball)"),
-          level: window.prompt("Spell level (e.g. 3rd)"),
-          castingTime: window.prompt("Casting time (e.g. 1 action)"),
-          range: window.prompt("Spell range (e.g. 150 feet)"),
-          components: window.prompt("Spell components (e.g. V, S, M)"),
-          materials: window.prompt("If there is M component, type it which one is it. If none, leave empty"),
-          duration: window.prompt("Spell duration (e.g. Instantaneous or 1 hour"),
-          description: window.prompt("Description"),
-          higherLevels: window.prompt("Type how this spell will work on higher levels"),
-        };
+    // Load cards from localStorage when the component mounts
+    const savedCards = JSON.parse(localStorage.getItem('cards'));
+    if (savedCards) {
+      setCards(savedCards);
+    }
+  }, []);
 
-        setCards([...cards, newCard]);
-      }
-    };
+  useEffect(() => {
+    // Save cards to localStorage whenever the cards state changes
+    localStorage.setItem('cards', JSON.stringify(cards));
+  }, [cards]);
 
+  const handleSpacebarPress = (event) => {
+    if (event.keyCode === 32) {
+      const newCard = {
+        id: Math.random(),
+        title: window.prompt("Spell title (e.g. Fireball)"),
+        level: window.prompt("Spell level (e.g. 3rd)"),
+        castingTime: window.prompt("Casting time (e.g. 1 action)"),
+        range: window.prompt("Spell range (e.g. 150 feet)"),
+        components: window.prompt("Spell components (e.g. V, S, M)"),
+        materials: window.prompt("If there is an M component, type it; if none, leave empty"),
+        duration: window.prompt("Spell duration (e.g. Instantaneous or 1 hour)"),
+        description: window.prompt("Description"),
+        higherLevels: window.prompt("Type how this spell will work at higher levels"),
+      };
+
+      setCards([...cards, newCard]);
+    }
+  };
+
+  useEffect(() => {
+    // Attach the spacebar event listener to the window
     window.addEventListener('keydown', handleSpacebarPress);
+
+    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener('keydown', handleSpacebarPress);
     };
