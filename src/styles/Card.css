@@ -2,8 +2,85 @@
     margin: 0;
     padding: 0;
 }
-.card{
-    width: 300px;
-    height: 400px;
-    background-color: lightcoral;
+body{
+    padding: 10px;
 }
+.basicInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card{
+    width: 290px;
+    min-height: 390px;
+    background-color: lightcoral;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card h2{
+    padding: 10px;
+    background-color: white;
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+}
+.basicInfo p{
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+.additionalInfo{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-top: 10px;
+}
+.additionalInfo div{
+    width: calc(50% - 30px);
+    background-color: white;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+.description, .higherLevels{
+    margin-top: 10px;
+    width: 80%;
+    font-size: 15px;
+    background-color: white;
+    padding: 10px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    line-height: 27px;
+    opacity: 0.8;
+  }
+  .tooltiptext:hover{
+    opacity: 1 !important;
+  }
+
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
